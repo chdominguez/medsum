@@ -1,0 +1,6 @@
+{
+  "cSpell.words": ["MEDSUM"],
+  "black-formatter.args": ["--config", "backend/pyproject.toml"],
+  "pylint.args": ["--config", "backend/pyproject.toml"],
+  "flake8.args": ["--toml-config", "backend/pyproject.toml"]
+}

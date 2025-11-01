@@ -1,0 +1,22 @@
+[tool.black]
+line-length = 98
+target-version = ['py39']
+
+[tool.pylint.'MAIN']
+max-line-length = 98
+
+[tool.pylint.messages_control]
+enable = [
+    "import-error",
+    "relative-beyond-top-level"
+]
+
+[tool.pylint.TYPECHECK]
+ignored-modules = []
+
+[tool.flake8]
+max-line-length = 98
+extend-ignore = ["E203"] # whitespace before ':', conflicts with black
+import-order-style = "google"
+application-import-names = "app"
+select = "E,F,W"
