@@ -48,18 +48,20 @@ class Summarizer:
         inputs = {k: v.to(self.device) for k, v in inputs.items()}
 
         gen_config = GenerationConfig(
-            max_new_tokens=max_length,
-            min_length=min_length,
+            max_new_tokens=150,
+            min_length=30,
             do_sample=False,
             early_stopping=True,
+            decoder_start_token_id=self.model.config.bos_token_id,
         )
 
         with torch.no_grad():
             outputs = self.model.generate(**inputs, **gen_config.__dict__)
-        summary = self.tokenizer.decode(
-            outputs[0], skip_special_tokens=True, clean_up_tokenization_spaces=True
-        )
-        return summary.strip()
+            summary = self.tokenizer.decode(
+                outputs[0], skip_special_tokens=True, clean_up_tokenization_spaces=True
+            )
+
+            return summary.strip()
 
     def _chunk_text(self, text: str, max_chars: int, overlap: int) -> List[str]:
         """

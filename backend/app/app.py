@@ -38,6 +38,8 @@ def summarize(payload: SummarizeRequest):
     Summarization endpoint.
     """
     text = payload.text.strip()
+
+    print("Received text for summarization:", text[:50], "..." if len(text) > 50 else "")
     if not text:
         raise HTTPException(status_code=400, detail="Text is empty")
 
